@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Environment files (secrets) - never commit these
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
