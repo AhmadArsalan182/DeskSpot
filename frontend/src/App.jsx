@@ -1,19 +1,18 @@
-﻿import { useEffect, useState } from "react";
+﻿import { Navigate, Route, Routes } from "react-router-dom";
+import PublicLayout from "./layouts/PublicLayout.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 export default function App() {
-  const [status, setStatus] = useState("loading...");
-
-  useEffect(() => {
-    fetch("/api/health")
-      .then((res) => res.json())
-      .then((data) => setStatus(data.status))
-      .catch(() => setStatus("backend unreachable"));
-  }, []);
-
   return (
-    <main>
-      <h1>DeskSpot</h1>
-      <p>API status: {status}</p>
-    </main>
+    <Routes>
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }
